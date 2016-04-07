@@ -8,6 +8,9 @@ $config = [
     'bootstrap' => ['log'],
     'params' => $params,
     'modules' => [
+        'gii' => [
+            'class' => 'yii\gii\Module',
+        ],
         'user' => [
             'class' => 'dektrium\user\Module',
             'enableConfirmation' => false,
@@ -15,6 +18,13 @@ $config = [
         ],
     ],
     'components' => [
+        'view' => [
+            'theme' => [
+                'pathMap' => [
+                    '@dektrium/user/views/admin' => '@app/views/users/'
+                ],
+            ],
+        ],
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => '0gzcfT72Z0Y6LV-tHqMHlm7k1mieva5F',
@@ -43,14 +53,15 @@ $config = [
             ],
         ],
         'db' => require(__DIR__ . '/db.php'),
-        /*
+
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
+                '/users' => '/user/admin/index'
             ],
         ],
-        */
+
     ],
 ];
 
